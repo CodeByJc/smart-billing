@@ -22,7 +22,7 @@
                         <div class="support-header text-center mb-4">
                             <span class="support-badge"><i class="bi bi-heart-fill me-1"></i>Public Support Page</span>
                             <h1 class="display-5 fw-bold mt-3 mb-2">Support Developer</h1>
-                            <p class="lead mb-0">1Choose a support type, select an amount, and complete payment securely with Razorpay.</p>
+                            <p class="lead mb-0">Choose a support type, select an amount, and complete payment securely with Razorpay.</p>
                         </div>
 
                         <div id="supportSuccessAlert" class="alert alert-success d-none" role="alert"></div>
