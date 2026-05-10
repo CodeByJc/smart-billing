@@ -71,6 +71,22 @@ CREATE TABLE IF NOT EXISTS invoice_items (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ------------------------------------------------------------
+-- Support Payments Table
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS support_payments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    support_type ENUM('GIFT', 'DONATE') NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    razorpay_order_id VARCHAR(100) NOT NULL UNIQUE,
+    razorpay_payment_id VARCHAR(100) DEFAULT NULL,
+    payment_status ENUM('SUCCESS', 'FAILED', 'PENDING') NOT NULL DEFAULT 'PENDING',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_support_order_id (razorpay_order_id),
+    INDEX idx_support_payment_id (razorpay_payment_id),
+    INDEX idx_support_status (payment_status)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ------------------------------------------------------------
 -- Default Admin User
 -- Password: admin123
 -- ------------------------------------------------------------

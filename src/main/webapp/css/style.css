@@ -268,6 +268,24 @@ body {
 .login-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(79,70,229,0.4); background: linear-gradient(135deg, var(--primary-dark), var(--primary)); }
 .login-footer { text-align: center; margin-top: 20px; }
 
+.support-developer-btn {
+    background: linear-gradient(135deg, var(--darker), var(--primary-dark));
+    border: none;
+    color: #ffffff !important;
+    font-weight: 700;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.18);
+    text-decoration: none;
+}
+
+.support-developer-btn:hover,
+.support-developer-btn:focus {
+    color: #ffffff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(79, 70, 229, 0.28);
+}
+
 /* --- Billing Summary --- */
 .billing-summary-card { position: sticky; top: calc(var(--navbar-height) + 20px); }
 

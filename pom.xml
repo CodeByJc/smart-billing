@@ -157,8 +157,8 @@
                     <configuration>
                         <type>standalone</type>
                         <properties>
-                            <cargo.servlet.port>8081</cargo.servlet.port>
-                            <cargo.rmi.port>11099</cargo.rmi.port>
+                            <cargo.servlet.port>8080</cargo.servlet.port>
+                            <cargo.rmi.port>12099</cargo.rmi.port>
                             <cargo.tomcat.ajp.port>8009</cargo.tomcat.ajp.port>
                         </properties>
                     </configuration>

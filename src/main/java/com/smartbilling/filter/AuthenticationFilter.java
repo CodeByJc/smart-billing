@@ -8,7 +8,8 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Authentication filter that protects all routes except login, static resources, and error pages.
+ * Authentication filter that protects all routes except login, static
+ * resources, and error pages.
  * Redirects unauthenticated users to the login page.
  */
 public class AuthenticationFilter implements Filter {
@@ -47,21 +48,23 @@ public class AuthenticationFilter implements Filter {
     }
 
     /**
-     * Check if the requested path is a public resource that doesn't require authentication.
+     * Check if the requested path is a public resource that doesn't require
+     * authentication.
      */
     private boolean isPublicResource(String path) {
         return path.equals("/") ||
-               path.equals("") ||
-               path.startsWith("/auth/") ||
-               path.startsWith("/css/") ||
-               path.startsWith("/js/") ||
-               path.startsWith("/images/") ||
-               path.startsWith("/error/") ||
-               path.endsWith(".css") ||
-               path.endsWith(".js") ||
-               path.endsWith(".png") ||
-               path.endsWith(".jpg") ||
-               path.endsWith(".ico");
+                path.equals("") ||
+                path.startsWith("/support") ||
+                path.startsWith("/auth/") ||
+                path.startsWith("/css/") ||
+                path.startsWith("/js/") ||
+                path.startsWith("/images/") ||
+                path.startsWith("/error/") ||
+                path.endsWith(".css") ||
+                path.endsWith(".js") ||
+                path.endsWith(".png") ||
+                path.endsWith(".jpg") ||
+                path.endsWith(".ico");
     }
 
     @Override

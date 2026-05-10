@@ -77,7 +77,12 @@
             </form>
 
             <div class="login-footer">
-                <small class="text-muted">Default: admin / admin123</small>
+                <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
+                    <small class="text-muted">Default: admin / admin123</small>
+                    <a href="${pageContext.request.contextPath}/support" class="btn btn-sm support-developer-btn">
+                        <i class="bi bi-heart-fill me-1"></i>Support Developer
+                    </a>
+                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,269 @@
+/* Support Developer public page */
+
+.support-page {
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(79, 70, 229, 0.25), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(6, 182, 212, 0.18), transparent 25%),
+        linear-gradient(135deg, #081120 0%, #111827 40%, #1e293b 100%);
+    color: #e5e7eb;
+}
+
+.support-hero {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.support-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.35;
+}
+
+.support-orb-1 {
+    width: 320px;
+    height: 320px;
+    background: rgba(79, 70, 229, 0.65);
+    top: -80px;
+    right: -80px;
+}
+
+.support-orb-2 {
+    width: 280px;
+    height: 280px;
+    background: rgba(16, 185, 129, 0.45);
+    bottom: 0;
+    left: -80px;
+}
+
+.support-panel {
+    position: relative;
+    z-index: 1;
+    background: rgba(15, 23, 42, 0.72);
+    backdrop-filter: blur(22px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
+    padding: 32px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+.support-header h1 {
+    letter-spacing: -0.04em;
+}
+
+.support-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(79, 70, 229, 0.18);
+    color: #c7d2fe;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.support-section-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 22px;
+    padding: 24px;
+}
+
+.section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f8fafc;
+}
+
+.support-option-card,
+.support-amount-card {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    color: #e5e7eb;
+    padding: 18px 16px;
+    transition: all 0.25s ease;
+    text-align: left;
+    min-height: 100%;
+}
+
+.support-option-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-height: 180px;
+}
+
+.support-option-card i {
+    font-size: 1.8rem;
+    color: #a5b4fc;
+}
+
+.support-option-card span {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.support-option-card small {
+    color: rgba(226, 232, 240, 0.75);
+    line-height: 1.45;
+}
+
+.support-amount-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    font-weight: 700;
+    min-height: 74px;
+}
+
+.support-option-card:hover,
+.support-amount-card:hover,
+.support-option-card.active,
+.support-amount-card.active {
+    border-color: rgba(99, 102, 241, 0.95);
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.35), rgba(59, 130, 246, 0.22));
+    box-shadow: 0 18px 40px rgba(79, 70, 229, 0.22);
+    transform: translateY(-2px);
+}
+
+.support-summary {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 18px;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.support-summary .text-muted {
+    color: rgba(255, 255, 255, 0.78) !important;
+}
+
+.support-summary span,
+.support-summary strong {
+    color: #ffffff;
+}
+
+/* Make selected labels clearly visible on dark background */
+.support-summary strong,
+#selectedSupportType,
+#selectedAmountLabel {
+    color: #ffffff !important;
+}
+
+.btn-support {
+    background: linear-gradient(135deg, #6366f1, #0ea5e9);
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 14px 18px;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(14, 165, 233, 0.28);
+}
+
+.btn-support:hover {
+    color: white;
+    filter: brightness(1.05);
+}
+
+.support-login-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #ffffff !important;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 0.45rem 0.85rem;
+    text-decoration: none;
+}
+
+.support-login-btn:hover,
+.support-login-btn:focus {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+.alert {
+    border-radius: 16px;
+}
+
+.result-page {
+    display: flex;
+    align-items: center;
+}
+
+.result-card {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
+    padding: 36px;
+    color: #e5e7eb;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+}
+
+.result-icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    margin-bottom: 8px;
+}
+
+.result-icon.success {
+    background: rgba(16, 185, 129, 0.18);
+    color: #34d399;
+}
+
+.result-icon.failure {
+    background: rgba(239, 68, 68, 0.18);
+    color: #f87171;
+}
+
+.mini-info-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 16px;
+    height: 100%;
+}
+
+.mini-info-card span {
+    display: block;
+    font-size: 0.85rem;
+    color: rgba(226, 232, 240, 0.72);
+    margin-bottom: 0.35rem;
+}
+
+.mini-info-card strong {
+    color: #f8fafc;
+    word-break: break-word;
+}
+
+@media (max-width: 991.98px) {
+    .support-panel,
+    .result-card {
+        padding: 24px;
+    }
+
+    .support-option-card {
+        min-height: 160px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .support-panel,
+    .result-card {
+        border-radius: 22px;
+    }
+
+    .support-section-card {
+        padding: 18px;
+    }
+}
