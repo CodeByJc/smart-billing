@@ -42,13 +42,23 @@ jobs:
 
             sudo systemctl stop tomcat
 
+            echo "Removing old deployment..."
             sudo rm -rf /opt/tomcat/webapps/ROOT
             sudo rm -f /opt/tomcat/webapps/ROOT.war
 
+            echo "Clearing Tomcat cache..."
+            sudo rm -rf /opt/tomcat/work/*
+            sudo rm -rf /opt/tomcat/temp/*
+
+            echo "Deploying new WAR..."
             sudo cp /tmp/ROOT.war /opt/tomcat/webapps/ROOT.war
 
             sudo chown tomcat:tomcat /opt/tomcat/webapps/ROOT.war
 
+            echo "Starting Tomcat..."
             sudo systemctl start tomcat
+
+            echo "Waiting for deployment..."
+            sleep 15
 
           EOF
