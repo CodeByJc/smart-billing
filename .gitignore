@@ -1,0 +1,24 @@
+# Maven / build output
+target/
+*.war
+*.class
+
+# Cargo / embedded Tomcat runtime
+.smarttomcat/
+
+# IDE metadata
+.idea/
+.vscode/
+*.iml
+.project
+.classpath
+.settings/
+
+# Logs and runtime files
+*.log
+hs_err_pid*
+replay_pid*
+
+# OS files
+.DS_Store
+Thumbs.db
