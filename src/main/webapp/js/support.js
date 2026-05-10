@@ -167,7 +167,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 }
             };
-
             const rzp = new Razorpay(options);
 
             rzp.on('payment.failed', async function (response) {
