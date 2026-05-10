@@ -9,10 +9,12 @@ import com.smartbilling.model.InvoiceItem;
 import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 /**
  * PDF invoice generator using iTextPDF.
- * Creates professional, printable invoices with product details, GST breakdown, and totals.
+ * Creates professional, printable invoices with product details, GST breakdown,
+ * and totals.
  */
 public class PDFGenerator {
 
@@ -81,6 +83,7 @@ public class PDFGenerator {
 
     private static void addInvoiceInfo(Document document, Invoice invoice) throws DocumentException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
 
         PdfPTable infoTable = new PdfPTable(2);
         infoTable.setWidthPercentage(100);
@@ -112,13 +115,13 @@ public class PDFGenerator {
     }
 
     private static void addItemsTable(Document document, Invoice invoice) throws DocumentException {
-        PdfPTable table = new PdfPTable(new float[]{1, 4, 2, 2, 2, 2, 3});
+        PdfPTable table = new PdfPTable(new float[] { 1, 4, 2, 2, 2, 2, 3 });
         table.setWidthPercentage(100);
         table.setSpacingBefore(10);
         table.setSpacingAfter(10);
 
         // Table headers
-        String[] headers = {"#", "Product", "Price", "Qty", "GST %", "GST Amt", "Total"};
+        String[] headers = { "#", "Product", "Price", "Qty", "GST %", "GST Amt", "Total" };
         for (String header : headers) {
             PdfPCell cell = new PdfPCell(new Phrase(header, HEADER_FONT));
             cell.setBackgroundColor(PRIMARY_COLOR);
@@ -134,7 +137,8 @@ public class PDFGenerator {
             BaseColor rowColor = (index % 2 == 0) ? LIGHT_GRAY : BaseColor.WHITE;
 
             addBodyCell(table, String.valueOf(index), rowColor, Element.ALIGN_CENTER);
-            addBodyCell(table, item.getProductName() != null ? item.getProductName() : "Product #" + item.getProductId(),
+            addBodyCell(table,
+                    item.getProductName() != null ? item.getProductName() : "Product #" + item.getProductId(),
                     rowColor, Element.ALIGN_LEFT);
             addBodyCell(table, formatCurrency(item.getPrice()), rowColor, Element.ALIGN_RIGHT);
             addBodyCell(table, String.valueOf(item.getQuantity()), rowColor, Element.ALIGN_CENTER);
@@ -217,7 +221,8 @@ public class PDFGenerator {
     }
 
     private static String formatCurrency(BigDecimal amount) {
-        if (amount == null) return "₹0.00";
+        if (amount == null)
+            return "₹0.00";
         return "₹" + String.format("%,.2f", amount);
     }
 }

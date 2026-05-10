@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<fmt:setTimeZone value="Asia/Kolkata"/>
 <jsp:include page="common/header.jsp"><jsp:param name="pageTitle" value="Invoice"/></jsp:include>
 <jsp:include page="common/sidebar.jsp"/>
 <div class="container-fluid py-4">
