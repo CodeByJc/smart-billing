@@ -6,11 +6,11 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Java
@@ -22,25 +22,33 @@ jobs:
       - name: Build WAR
         run: mvn clean package -DskipTests
 
-      - name: Copy WAR to EC2
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          source: "target/smart-billing.war"
-          target: "/tmp"
+      - name: Create SSH Key
+        run: |
+          echo "${{ secrets.EC2_SSH_KEY }}" > private_key.pem
+          chmod 600 private_key.pem
 
-      - name: Deploy on Server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
+      - name: Upload WAR
+        run: |
+          scp -i private_key.pem \
+              -o StrictHostKeyChecking=no \
+              target/smart-billing.war \
+              ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/tmp/ROOT.war
+
+      - name: Deploy
+        run: |
+          ssh -i private_key.pem \
+              -o StrictHostKeyChecking=no \
+              ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} << 'EOF'
+
             sudo systemctl stop tomcat
-            sudo rm -rf /opt/tomcat/webapps/smart-billing
-            sudo rm -f /opt/tomcat/webapps/smart-billing.war
-            sudo cp /tmp/target/smart-billing.war /opt/tomcat/webapps/
-            sudo chown tomcat:tomcat /opt/tomcat/webapps/smart-billing.war
+
+            sudo rm -rf /opt/tomcat/webapps/ROOT
+            sudo rm -f /opt/tomcat/webapps/ROOT.war
+
+            sudo cp /tmp/ROOT.war /opt/tomcat/webapps/ROOT.war
+
+            sudo chown tomcat:tomcat /opt/tomcat/webapps/ROOT.war
+
             sudo systemctl start tomcat
+
+          EOF
