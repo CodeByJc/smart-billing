@@ -1,0 +1,46 @@
+name: Deploy Smart Billing
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Build WAR
+        run: mvn clean package -DskipTests
+
+      - name: Copy WAR to EC2
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "target/smart-billing.war"
+          target: "/tmp"
+
+      - name: Deploy on Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            sudo systemctl stop tomcat
+            sudo rm -rf /opt/tomcat/webapps/smart-billing
+            sudo rm -f /opt/tomcat/webapps/smart-billing.war
+            sudo cp /tmp/target/smart-billing.war /opt/tomcat/webapps/
+            sudo chown tomcat:tomcat /opt/tomcat/webapps/smart-billing.war
+            sudo systemctl start tomcat
